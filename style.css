@@ -899,6 +899,35 @@ html.dark .footer-cta-section {
     letter-spacing: 0.3px;
 }
 
+/* Área dos ícones das Redes Sociais */
+.footer-socials {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 18px; /* Espaçamento entre os ícones */
+}
+
+.social-link {
+    color: rgba(255, 255, 255, 0.75);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.2s ease, transform 0.2s ease;
+    text-decoration: none;
+}
+
+.social-icon {
+    width: 20px;
+    height: 20px;
+}
+
+/* Efeito ao passar o mouse nos ícones */
+.social-link:hover {
+    color: #ffffff;
+    transform: scale(1.15);
+}
+
+
 /* ==========================================
    RESPONSIVIDADE (MEDIA QUERIES COMPARTILHADAS)
    ========================================== */
