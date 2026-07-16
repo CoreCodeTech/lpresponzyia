@@ -71,12 +71,12 @@ body {
 }
 
 /* ==========================================
-   CABEÇALHO (HEADER CENTRALIZADO COM BOTÃO ABSOLUTO)
+   CABEÇALHO AJUSTADO (LOGO CENTRALIZADA NO DESKTOP)
    ========================================== */
 .header {
     height: 100px;
     display: flex;
-    justify-content: center; /* Centraliza a logo perfeitamente */
+    justify-content: center; /* Centraliza a logo perfeitamente no Desktop */
     align-items: center;
     position: relative; /* Base para o posicionamento absoluto do botão */
 }
@@ -87,16 +87,16 @@ body {
 }
 
 .logo-img {
-    width: 144px;
-    height: 144px;
+    height: 65px; /* Altura comercial e elegante (ajustada de 144px) */
+    width: auto;
     object-fit: contain;
     border-radius: 8px;
 }
 
-/* NOVO BOTÃO DE ALTERNAR TEMA (Igual ao da imagem) */
+/* BOTÃO DE ALTERNAR TEMA */
 .theme-toggle-btn {
-    position: absolute; /* Tira o botão do fluxo, deixando a logo centralizada */
-    right: 24px; /* Fixa no canto direito */
+    position: absolute; /* Remove do fluxo para não empurrar a logo no desktop */
+    right: 24px; /* Fixa perfeitamente no canto direito */
     background-color: #374151; /* Cor de fundo escura/cinza */
     color: #ffffff; /* Letra branca */
     border: none;
@@ -111,6 +111,7 @@ body {
     font-weight: 700;
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
     transition: background-color 0.2s ease, transform 0.2s ease;
+    z-index: 10;
 }
 
 /* Efeito ao passar o mouse */
@@ -125,21 +126,6 @@ body {
 
 .theme-btn-text {
     color: #ffffff;
-}
-
-/* Ajuste rápido para o botão sumir/ficar responsivo em telas muito pequenas */
-@media (max-width: 640px) {
-    .header {
-        flex-direction: column;
-        height: auto;
-        padding-top: 20px;
-        gap: 12px;
-    }
-    
-    .theme-toggle-btn {
-        position: static; /* No mobile ele vai para baixo da logo para não quebrar o layout */
-        margin: 0 auto;
-    }
 }
 
 /* ==========================================
@@ -565,7 +551,7 @@ html.dark .pricing-section {
     justify-content: center;
     align-items: stretch;
     gap: 28px;
-    max-width: 1100px; /* Aumentado ligeiramente para comportar os 3 planos sem quebras feias */
+    max-width: 1100px;
     margin: 0 auto;
 }
 
@@ -927,7 +913,6 @@ html.dark .footer-cta-section {
     transform: scale(1.15);
 }
 
-
 /* ==========================================
    RESPONSIVIDADE (MEDIA QUERIES COMPARTILHADAS)
    ========================================== */
@@ -1018,7 +1003,53 @@ html.dark .footer-cta-section {
     }
 }
 
+/* Estilização exclusiva para listas dentro das respostas do FAQ */
+.faq-answer-list {
+    margin-top: 14px;
+    padding-left: 20px;
+    list-style-type: disc;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.faq-answer-list li {
+    color: var(--text-secondary);
+    font-size: 0.88rem;
+    line-height: 1.5;
+}
+
+.faq-answer-list strong {
+    color: var(--text-primary);
+    font-weight: 700;
+}
+
+/* REFACTOR COMPLETO MEDIA QUERY 640px (Responsividade do topo do site) */
 @media (max-width: 640px) {
+    .header {
+        height: 80px;
+        display: flex;
+        flex-direction: row; /* Mantém logo e botão na mesma linha horizontal */
+        justify-content: space-between; /* Envia a logo para a esquerda e o botão para a direita */
+        align-items: center;
+        padding: 0 16px;
+    }
+
+    .logo-img {
+        height: 45px; /* Altura ideal reduzida para caber perfeitamente no mobile */
+        width: auto;
+    }
+
+    .theme-toggle-btn {
+        position: static; /* Remove o absoluto para o botão se alinhar de forma flexível */
+        padding: 8px 12px; /* Padding interno mais compacto no mobile */
+    }
+
+    /* Oculta o texto para poupar espaço precioso e não quebrar a tela do celular */
+    .theme-btn-text {
+        display: none;
+    }
+
     .niches-grid {
         grid-template-columns: 1fr;
         max-width: 400px;
@@ -1046,34 +1077,9 @@ html.dark .footer-cta-section {
     }
 }
 
-/* Estilização exclusiva para listas dentro das respostas do FAQ */
-.faq-answer-list {
-    margin-top: 14px;
-    padding-left: 20px;
-    list-style-type: disc;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
-
-.faq-answer-list li {
-    color: var(--text-secondary);
-    font-size: 0.88rem;
-    line-height: 1.5;
-}
-
-.faq-answer-list strong {
-    color: var(--text-primary);
-    font-weight: 700;
-}
-
 @media (max-width: 480px) {
     .header {
-        height: 90px;
-    }
-    
-    .logo-text {
-        font-size: 1.25rem;
+        height: 80px; /* Mantido fixo de acordo com a regra de 640px */
     }
     
     .hero-title {
