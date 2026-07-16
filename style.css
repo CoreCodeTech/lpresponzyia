@@ -1,0 +1,1037 @@
+/* ==========================================
+   VARIÁVEIS DE CORES E CONFIGURAÇÕES GERAIS
+   ========================================== */
+:root {
+    --bg-color: #f7fafc; /* Fundo suave levemente azulado/cinza do design */
+    --text-primary: #0f172a; /* Azul escuro quase preto para os textos fortes */
+    --text-secondary: #64748b; /* Cinza para textos secundários */
+    --primary-blue: #2563eb; /* Azul base */
+    --gradient-start: #3b82f6; /* Início do gradiente do botão */
+    --gradient-end: #38bdf8; /* Fim do gradiente do botão (Ciano) */
+    
+    /* Cores das seções contrastantes */
+    --section-contrast-bg: #eef2f6; 
+    --card-bg: #ffffff;
+    --card-border: rgba(226, 232, 240, 0.8);
+    
+    /* Configuração do WhatsApp simulado */
+    --whatsapp-phone-bg: #0f172a;
+    --whatsapp-phone-border: #1e293b;
+    --whatsapp-bg: #e5ddd5;
+    --whatsapp-header: #075e54;
+    --msg-incoming: #ffffff;
+    --msg-outgoing: #dcf8c6;
+    --chat-footer-bg: #f0f0f0;
+    --chat-footer-border: #e0e0e0;
+}
+
+/* ==========================================
+   VARIÁVEIS EXCLUSIVAS DO MODO ESCURO (DARK)
+   ========================================== */
+html.dark {
+    --bg-color: #0b0f19; /* Azul-escuro profundo (sem roxo) */
+    --text-primary: #f8fafc; /* Branco acinzentado super legível */
+    --text-secondary: #94a3b8; /* Cinza médio limpo */
+    
+    --section-contrast-bg: #111827; /* Fundo escuro alternado (cinza ardósia) */
+    --card-bg: #1e293b; /* Fundo dos cards escuro premium */
+    --card-border: rgba(255, 255, 255, 0.08); /* Borda muito sutil */
+    
+    /* Customização do Celular no Modo Escuro (fundo combina mais) */
+    --whatsapp-phone-bg: #1e293b;
+    --whatsapp-phone-border: #334155;
+    --whatsapp-bg: #0f172a; /* WhatsApp no modo escuro */
+    --whatsapp-header: #1f2937;
+    --msg-incoming: #1e293b;
+    --msg-outgoing: #059669; /* Verde esmeralda escuro para combinar com o tom dark */
+    --chat-footer-bg: #111827;
+    --chat-footer-border: #1f2937;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-primary);
+    min-height: 100vh;
+    overflow-x: hidden;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Container de Alinhamento Central */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+}
+
+/* ==========================================
+   CABEÇALHO (HEADER CENTRALIZADO COM BOTÃO ABSOLUTO)
+   ========================================== */
+.header {
+    height: 100px;
+    display: flex;
+    justify-content: center; /* Centraliza a logo perfeitamente */
+    align-items: center;
+    position: relative; /* Base para o posicionamento absoluto do botão */
+}
+
+.logo-area {
+    display: flex;
+    align-items: center;
+}
+
+.logo-img {
+    width: 144px;
+    height: 144px;
+    object-fit: contain;
+    border-radius: 8px;
+}
+
+/* NOVO BOTÃO DE ALTERNAR TEMA (Igual ao da imagem) */
+.theme-toggle-btn {
+    position: absolute; /* Tira o botão do fluxo, deixando a logo centralizada */
+    right: 24px; /* Fixa no canto direito */
+    background-color: #374151; /* Cor de fundo escura/cinza */
+    color: #ffffff; /* Letra branca */
+    border: none;
+    cursor: pointer;
+    padding: 8px 16px;
+    border-radius: 8px; /* Cantos arredondados suaves */
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.88rem;
+    font-weight: 700;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+/* Efeito ao passar o mouse */
+.theme-toggle-btn:hover {
+    background-color: #4b5563;
+    transform: translateY(-1px);
+}
+
+.theme-icon {
+    font-size: 1rem;
+}
+
+.theme-btn-text {
+    color: #ffffff;
+}
+
+/* Ajuste rápido para o botão sumir/ficar responsivo em telas muito pequenas */
+@media (max-width: 640px) {
+    .header {
+        flex-direction: column;
+        height: auto;
+        padding-top: 20px;
+        gap: 12px;
+    }
+    
+    .theme-toggle-btn {
+        position: static; /* No mobile ele vai para baixo da logo para não quebrar o layout */
+        margin: 0 auto;
+    }
+}
+/* ==========================================
+   CONTEÚDO HERO (GRID DUAS COLUNAS)
+   ========================================== */
+.hero {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 60px;
+    align-items: center;
+    padding-top: 40px;
+    padding-bottom: 80px;
+}
+
+.hero-content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.badge {
+    background-color: #e0e7ff;
+    color: #4f46e5;
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 6px 14px;
+    border-radius: 20px;
+    margin-bottom: 24px;
+    letter-spacing: 0.5px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Badge no modo escuro mais suave */
+html.dark .badge {
+    background-color: rgba(79, 70, 229, 0.2);
+    color: #a5b4fc;
+}
+
+.hero-title {
+    font-size: 2.85rem;
+    font-weight: 800;
+    line-height: 1.15;
+    letter-spacing: -1.5px;
+    margin-bottom: 24px;
+}
+
+.hero-title .highlight {
+    color: var(--primary-blue);
+    background: linear-gradient(to right, var(--primary-blue), #06b6d4);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.hero-subtitle {
+    font-size: 1.05rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin-bottom: 36px;
+    max-width: 540px;
+}
+
+/* BOTÃO DE CTA GRADIENTE */
+.btn-cta {
+    background: linear-gradient(135deg, var(--gradient-start) 0%, var(--gradient-end) 100%);
+    color: white;
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: 700;
+    padding: 16px 32px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.btn-cta:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(59, 130, 246, 0.4);
+}
+
+.btn-cta .arrow {
+    font-size: 1.1rem;
+}
+
+.cta-notice {
+    font-size: 0.75rem;
+    color: #94a3b8;
+    margin-top: 16px;
+}
+
+/* ==========================================
+   COLUNA DIREITA - MOCKUP WHATSAPP
+   ========================================== */
+.hero-mockup {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.phone-container {
+    width: 320px;
+    height: 560px;
+    background-color: var(--whatsapp-phone-bg);
+    border-radius: 36px;
+    padding: 10px;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    border: 4px solid var(--whatsapp-phone-border);
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.phone-screen {
+    width: 100%;
+    height: 100%;
+    background-color: var(--whatsapp-bg);
+    border-radius: 26px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    transition: background-color 0.3s ease;
+}
+
+.chat-header {
+    background-color: var(--whatsapp-header);
+    color: white;
+    padding: 14px 16px;
+    display: flex;
+    align-items: center;
+    transition: background-color 0.3s ease;
+}
+
+.chat-header-left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.chat-avatar {
+    width: 54px;
+    height: 54px;
+    border-radius: 50%;
+    object-fit: cover;
+    background-color: #fafafa;
+}
+
+.chat-status {
+    display: flex;
+    flex-direction: column;
+}
+
+.chat-name {
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+.chat-online-status {
+    font-size: 0.65rem;
+    color: #85e3b3;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.chat-online-status .dot {
+    width: 6px;
+    height: 6px;
+    background-color: #4ade80;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.chat-messages {
+    flex: 1;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    overflow-y: auto;
+}
+
+.message {
+    max-width: 85%;
+    padding: 10px 12px;
+    font-size: 0.75rem;
+    line-height: 1.4;
+    position: relative;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.message.incoming {
+    background-color: var(--msg-incoming);
+    color: var(--text-primary);
+    align-self: flex-start;
+    border-radius: 0px 10px 10px 10px;
+}
+
+html.dark .message.incoming {
+    color: #ffffff; /* Texto claro no incoming do modo escuro */
+}
+
+.message.outgoing {
+    background-color: var(--msg-outgoing);
+    color: #0f172a; /* Garante boa legibilidade nos balões */
+    align-self: flex-end;
+    border-radius: 10px 0px 10px 10px;
+}
+
+html.dark .message.outgoing {
+    color: #ffffff;
+}
+
+.chat-footer {
+    background-color: var(--chat-footer-bg);
+    padding: 12px 16px;
+    border-top: 1px solid var(--chat-footer-border);
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.typing-text {
+    font-size: 0.7rem;
+    color: #888888;
+    font-style: italic;
+}
+
+/* ==========================================
+   SEÇÃO DE PROBLEMAS (DORES)
+   ========================================== */
+.problems-section {
+    background-color: var(--section-contrast-bg);
+    padding: 80px 0;
+    text-align: center;
+    transition: background-color 0.3s ease;
+}
+
+.problems-title {
+    font-size: 1.85rem;
+    font-weight: 800;
+    color: var(--text-primary);
+    margin-bottom: 48px;
+    letter-spacing: -0.8px;
+    line-height: 1.3;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.problems-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+}
+
+.problem-card {
+    background-color: var(--card-bg);
+    border-radius: 16px;
+    padding: 32px 24px;
+    text-align: left;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+    border: 1px solid var(--card-border);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.problem-icon-wrapper {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 24px;
+}
+
+.problem-icon {
+    font-size: 1.35rem;
+}
+
+.icon-red { background-color: #fee2e2; }
+.icon-green { background-color: #dcfce7; }
+.icon-blue { background-color: #dbeafe; }
+
+/* Customização de opacidade dos ícones no dark mode */
+html.dark .icon-red { background-color: rgba(239, 68, 68, 0.15); }
+html.dark .icon-green { background-color: rgba(16, 185, 129, 0.15); }
+html.dark .icon-blue { background-color: rgba(59, 130, 246, 0.15); }
+
+.problem-card-title {
+    font-size: 1.15rem;
+    font-weight: 800;
+    color: var(--text-primary);
+    margin-bottom: 12px;
+    letter-spacing: -0.3px;
+}
+
+.problem-card-text {
+    font-size: 0.88rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+}
+
+/* ==========================================
+   SEÇÃO DE NICHOS (CASOS DE USO)
+   ========================================== */
+.niches-section {
+    padding: 80px 24px;
+    text-align: center;
+    background-color: var(--bg-color);
+    transition: background-color 0.3s ease;
+}
+
+.niches-title {
+    font-size: 1.85rem;
+    font-weight: 800;
+    color: var(--text-primary);
+    margin-bottom: 48px;
+    letter-spacing: -0.8px;
+    line-height: 1.3;
+}
+
+.niches-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+
+.niche-card {
+    background-color: var(--card-bg);
+    border-radius: 16px;
+    padding: 32px 24px;
+    text-align: left;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.03), 0 2px 4px -1px rgba(0, 0, 0, 0.02);
+    border: 1px solid var(--card-border);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.niche-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
+}
+
+.niche-icon-wrapper {
+    width: 44px;
+    height: 44px;
+    background-color: #f1f5f9;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+    transition: background-color 0.3s ease;
+}
+
+html.dark .niche-icon-wrapper {
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+.niche-icon {
+    font-size: 1.2rem;
+}
+
+.niche-card-title {
+    font-size: 1.1rem;
+    font-weight: 800;
+    color: var(--text-primary);
+    margin-bottom: 12px;
+    letter-spacing: -0.3px;
+}
+
+.niche-card-text {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    line-height: 1.5;
+}
+
+/* ==========================================
+   SEÇÃO DE PREÇOS (OFERTA ESPECIAL)
+   ========================================== */
+.pricing-section {
+    background-color: #0b0f19; /* Mantém escuro por design */
+    color: #ffffff;
+    padding: 100px 0;
+    text-align: center;
+}
+
+/* Garante o texto claro mesmo se o dark mode mudar a classe pai */
+html.dark .pricing-section {
+    background-color: #090d16;
+}
+
+.pricing-header {
+    margin-bottom: 60px;
+}
+
+.pricing-title {
+    font-size: 2rem;
+    font-weight: 800;
+    margin-bottom: 16px;
+    letter-spacing: -1px;
+}
+
+.pricing-subtitle {
+    font-size: 0.95rem;
+    color: #94a3b8;
+    max-width: 620px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+.pricing-grid {
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    gap: 32px;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.price-card {
+    background-color: #ffffff;
+    color: #0f172a; /* Garante cor escura no container branco fixo */
+    border-radius: 24px;
+    padding: 40px 32px;
+    flex: 1;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3);
+}
+
+/* Ajusta o card de preço se for dark mode para combinar perfeitamente */
+html.dark .price-card {
+    background-color: #1e293b;
+    color: #f8fafc;
+}
+
+.price-card.featured {
+    border: 2.5px solid #3b82f6;
+}
+
+.featured-badge {
+    position: absolute;
+    top: -14px;
+    right: 32px;
+    background: linear-gradient(90deg, #3b82f6, #06b6d4);
+    color: white;
+    font-size: 0.65rem;
+    font-weight: 800;
+    padding: 6px 14px;
+    border-radius: 20px;
+    letter-spacing: 1px;
+    box-shadow: 0 4px 10px rgba(59, 130, 246, 0.4);
+}
+
+.price-card-header {
+    margin-bottom: 28px;
+}
+
+.plan-name {
+    font-size: 1.4rem;
+    font-weight: 800;
+    margin-bottom: 8px;
+    color: inherit;
+}
+
+.plan-desc {
+    font-size: 0.82rem;
+    color: #64748b;
+    line-height: 1.4;
+    margin-bottom: 24px;
+}
+
+html.dark .plan-desc {
+    color: #94a3b8;
+}
+
+.plan-price {
+    display: flex;
+    align-items: baseline;
+    gap: 4px;
+}
+
+.plan-price .currency {
+    font-size: 1.2rem;
+    font-weight: 800;
+}
+
+.plan-price .value {
+    font-size: 2.3rem;
+    font-weight: 800;
+    letter-spacing: -1px;
+}
+
+.plan-price .period {
+    font-size: 0.85rem;
+    color: #64748b;
+    font-weight: 500;
+}
+
+html.dark .plan-price .period {
+    color: #94a3b8;
+}
+
+.daily-equivalence {
+    font-size: 0.8rem;
+    color: #10b981;
+    font-weight: 700;
+    margin-top: 8px;
+}
+
+.plan-features {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    margin-bottom: 40px;
+}
+
+.plan-features li {
+    font-size: 0.85rem;
+    color: #475569;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+html.dark .plan-features li {
+    color: #cbd5e1;
+}
+
+.plan-features .check {
+    color: #3b82f6;
+    font-weight: bold;
+    font-size: 1rem;
+}
+
+.btn-plan {
+    display: block;
+    text-align: center;
+    text-decoration: none;
+    padding: 16px 24px;
+    border-radius: 12px;
+    font-size: 0.9rem;
+    font-weight: 700;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.btn-plan:hover {
+    transform: translateY(-2px);
+}
+
+.btn-dark {
+    background-color: #0f172a;
+    color: #ffffff;
+}
+
+html.dark .btn-dark {
+    background-color: #0f172a;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.btn-dark:hover {
+    background-color: #1e293b;
+    box-shadow: 0 10px 15px -3px rgba(15, 23, 42, 0.3);
+}
+
+.btn-gradient {
+    background: linear-gradient(135deg, var(--gradient-start) 0%, var(--gradient-end) 100%);
+    color: #ffffff;
+    box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+}
+
+.btn-gradient:hover {
+    box-shadow: 0 10px 20px rgba(59, 130, 246, 0.45);
+}
+
+/* ==========================================
+   SEÇÃO FAQ (PERGUNTAS FREQUENTES)
+   ========================================== */
+.faq-section {
+    background-color: var(--section-contrast-bg);
+    padding: 80px 0;
+    text-align: center;
+    transition: background-color 0.3s ease;
+}
+
+.container-small {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 24px;
+}
+
+.faq-title {
+    font-size: 1.85rem;
+    font-weight: 800;
+    color: var(--text-primary);
+    margin-bottom: 40px;
+    letter-spacing: -0.8px;
+}
+
+.faq-list {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.faq-item {
+    background-color: var(--card-bg);
+    border-radius: 12px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.02), 0 2px 4px -1px rgba(0, 0, 0, 0.01);
+    border: 1px solid var(--card-border);
+    text-align: left;
+    overflow: hidden;
+    transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.faq-item summary::-webkit-details-marker {
+    display: none;
+}
+.faq-item summary {
+    list-style: none;
+}
+
+.faq-question {
+    padding: 22px 28px;
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    user-select: none;
+    transition: background-color 0.2s ease, color 0.3s ease;
+}
+
+.faq-question:hover {
+    background-color: rgba(0, 0, 0, 0.02);
+}
+
+html.dark .faq-question:hover {
+    background-color: rgba(255, 255, 255, 0.02);
+}
+
+.faq-arrow {
+    font-size: 0.7rem;
+    color: var(--text-primary);
+    transition: transform 0.2s ease, color 0.3s ease;
+}
+
+.faq-item[open] .faq-arrow {
+    transform: rotate(180deg);
+}
+
+.faq-answer {
+    padding: 0 28px 24px 28px;
+    font-size: 0.88rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    animation: slideDown 0.2s ease-out;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-5px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ==========================================
+   SEÇÃO CTA FINAL & RODAPÉ
+   ========================================== */
+.footer-cta-section {
+    background: linear-gradient(135deg, #2563eb 0%, #38bdf8 100%);
+    color: #ffffff;
+    padding: 80px 0 40px 0;
+    text-align: center;
+    position: relative;
+}
+
+html.dark .footer-cta-section {
+    background: linear-gradient(135deg, #1e3a8a 0%, #0f172a 100%);
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.cta-box {
+    max-width: 700px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.footer-cta-title {
+    font-size: 2.2rem;
+    font-weight: 800;
+    margin-bottom: 16px;
+    letter-spacing: -1px;
+    line-height: 1.2;
+}
+
+.footer-cta-subtitle {
+    font-size: 0.95rem;
+    color: rgba(255, 255, 255, 0.9);
+    max-width: 540px;
+    margin-bottom: 32px;
+    line-height: 1.6;
+}
+
+.btn-footer-cta {
+    background-color: #ffffff;
+    color: #0f172a;
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: 700;
+    padding: 16px 36px;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.15);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    display: inline-block;
+}
+
+.btn-footer-cta:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 15px 30px -5px rgba(0, 0, 0, 0.25);
+    background-color: #f8fafc;
+}
+
+.footer-copyright {
+    margin-top: 80px;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    padding-top: 24px;
+}
+
+.footer-copyright p {
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.7);
+    letter-spacing: 0.3px;
+}
+
+/* ==========================================
+   RESPONSIVIDADE (MEDIA QUERIES COMPARTILHADAS)
+   ========================================== */
+@media (max-width: 1024px) {
+    .niches-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+}
+
+@media (max-width: 968px) {
+    .hero {
+        grid-template-columns: 1fr;
+        gap: 50px;
+        text-align: center;
+        padding-top: 20px;
+    }
+
+    .hero-content {
+        align-items: center;
+    }
+
+    .hero-title {
+        font-size: 2.2rem;
+    }
+
+    .hero-subtitle {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .problems-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+        max-width: 450px;
+        margin: 0 auto;
+    }
+    
+    .problems-title {
+        font-size: 1.5rem;
+        margin-bottom: 36px;
+    }
+}
+
+@media (max-width: 768px) {
+    .pricing-section {
+        padding: 60px 0;
+    }
+
+    .pricing-grid {
+        flex-direction: column;
+        align-items: center;
+        gap: 40px;
+        max-width: 400px;
+    }
+
+    .price-card {
+        width: 100%;
+    }
+
+    .pricing-title {
+        font-size: 1.6rem;
+    }
+
+    .footer-cta-section {
+        padding: 60px 0 30px 0;
+    }
+
+    .footer-cta-title {
+        font-size: 1.7rem;
+    }
+
+    .footer-cta-subtitle {
+        font-size: 0.88rem;
+        padding: 0 10px;
+    }
+
+    .btn-footer-cta {
+        width: 100%;
+        max-width: 320px;
+        padding: 14px 24px;
+        font-size: 0.95rem;
+    }
+
+    .footer-copyright {
+        margin-top: 60px;
+    }
+}
+
+@media (max-width: 640px) {
+    .niches-grid {
+        grid-template-columns: 1fr;
+        max-width: 400px;
+        margin: 0 auto;
+    }
+    
+    .niches-title {
+        font-size: 1.5rem;
+        margin-bottom: 36px;
+    }
+
+    .faq-title {
+        font-size: 1.5rem;
+        margin-bottom: 28px;
+    }
+
+    .faq-question {
+        padding: 18px 20px;
+        font-size: 0.88rem;
+    }
+
+    .faq-answer {
+        padding: 0 20px 20px 20px;
+        font-size: 0.82rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .header {
+        height: 90px;
+    }
+    
+    .logo-text {
+        font-size: 1.25rem;
+    }
+    
+    .hero-title {
+        font-size: 1.8rem;
+    }
+    
+    .btn-cta {
+        width: 100%;
+        justify-content: center;
+        font-size: 0.95rem;
+        padding: 14px 20px;
+    }
+}
