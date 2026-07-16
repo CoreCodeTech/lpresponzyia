@@ -1017,6 +1017,27 @@ html.dark .footer-cta-section {
     }
 }
 
+/* Estilização exclusiva para listas dentro das respostas do FAQ */
+.faq-answer-list {
+    margin-top: 14px;
+    padding-left: 20px;
+    list-style-type: disc;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.faq-answer-list li {
+    color: var(--text-secondary);
+    font-size: 0.88rem;
+    line-height: 1.5;
+}
+
+.faq-answer-list strong {
+    color: var(--text-primary);
+    font-weight: 700;
+}
+
 @media (max-width: 480px) {
     .header {
         height: 90px;
