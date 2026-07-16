@@ -141,6 +141,7 @@ body {
         margin: 0 auto;
     }
 }
+
 /* ==========================================
    CONTEÚDO HERO (GRID DUAS COLUNAS)
    ========================================== */
@@ -526,7 +527,7 @@ html.dark .niche-icon-wrapper {
 }
 
 /* ==========================================
-   SEÇÃO DE PREÇOS (OFERTA ESPECIAL)
+   SEÇÃO DE PREÇOS (OFERTA ESPECIAL - GRID 3 COLUNAS)
    ========================================== */
 .pricing-section {
     background-color: #0b0f19; /* Mantém escuro por design */
@@ -563,8 +564,8 @@ html.dark .pricing-section {
     display: flex;
     justify-content: center;
     align-items: stretch;
-    gap: 32px;
-    max-width: 900px;
+    gap: 28px;
+    max-width: 1100px; /* Aumentado ligeiramente para comportar os 3 planos sem quebras feias */
     margin: 0 auto;
 }
 
@@ -940,22 +941,23 @@ html.dark .footer-cta-section {
         font-size: 1.5rem;
         margin-bottom: 36px;
     }
+    
+    /* Responsividade para o grid de preços com 3 planos em telas medianas */
+    .pricing-grid {
+        flex-direction: column;
+        align-items: center;
+        gap: 40px;
+        max-width: 450px;
+    }
+    
+    .price-card {
+        width: 100%;
+    }
 }
 
 @media (max-width: 768px) {
     .pricing-section {
         padding: 60px 0;
-    }
-
-    .pricing-grid {
-        flex-direction: column;
-        align-items: center;
-        gap: 40px;
-        max-width: 400px;
-    }
-
-    .price-card {
-        width: 100%;
     }
 
     .pricing-title {
